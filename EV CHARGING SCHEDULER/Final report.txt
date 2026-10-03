@@ -1,0 +1,1079 @@
+# FINAL PROJECT REPORT
+
+## EV CHARGING SLOT SCHEDULER
+
+### Using Priority Queue, Greedy Algorithm and Job Sequencing
+
+**Submitted by:**
+Student Name:_A.SAI MOHAN
+Roll Number: 25MVCSMR0369
+
+**Student Name:A.VINAY
+Roll Number: 25MVCSMR0370
+
+**Student Name:CH.ABHISHEK
+Roll Number: 25MVCSMR0381
+
+**Department: CSE(AI&ML)
+**College:** MALLA REDDY VISHWAVIDYAPEETH
+
+**Project Guide:** __________________________
+
+**Academic Year:** 2026–2027
+
+---
+
+# 1. COVER PAGE
+
+## Project Title
+
+**EV Charging Slot Scheduler**
+
+### Project Subtitle
+
+**An Algorithm-Based Electric Vehicle Charging Slot Allocation System**
+
+### Core Algorithms
+
+* Priority Queue
+* Greedy Algorithm
+* Job Sequencing
+
+### Technologies
+
+* Python
+* Flask
+* HTML
+* CSS
+* PostgreSQL
+
+---
+
+# 2. ABSTRACT & INTRODUCTION
+
+## 2.1 Abstract
+
+The increasing adoption of Electric Vehicles (EVs) has created a growing demand for efficient charging infrastructure. When multiple vehicles request charging at the same time, limited charging stations can create scheduling conflicts, delays and inefficient utilization of available charging slots.
+
+The **EV Charging Slot Scheduler** is an algorithm-based system designed to assign charging slots to electric vehicles according to their urgency, arrival time, departure deadline and required charging duration.
+
+The system uses three important Design and Analysis of Algorithms concepts: **Priority Queue, Greedy Algorithm and Job Sequencing**. The Priority Queue determines which vehicle should be considered first. The Greedy Algorithm selects the earliest feasible charging slot for each vehicle. Job Sequencing and deadline checking ensure that a vehicle is scheduled only when its charging can be completed before its departure deadline.
+
+The project is implemented using Python and Flask, with PostgreSQL planned for persistent data storage. The system provides a user interface for entering vehicle requests and displays the resulting charging schedule along with algorithm execution details.
+
+The project demonstrates how algorithmic techniques can be applied to a practical scheduling problem while making the decision-making process visible to users.
+
+---
+
+## 2.2 Introduction
+
+Electric Vehicles are becoming an important part of modern transportation. Unlike conventional vehicles, EVs require periodic charging, which creates a need for efficient management of charging infrastructure.
+
+A charging station may have only a limited number of charging slots. If several vehicles arrive simultaneously, the system must determine:
+
+* Which vehicle should be charged first?
+* Which charging slot should be assigned?
+* Can the vehicle finish charging before its departure?
+* How can available charging slots be utilized efficiently?
+
+Manual scheduling becomes difficult when the number of vehicles increases. Therefore, an automated algorithmic solution can help organize charging requests.
+
+The proposed system accepts information about each vehicle, including its urgency, arrival time, departure time and charging duration. It then processes the vehicles using a Priority Queue and assigns feasible slots using a Greedy strategy.
+
+---
+
+## 2.3 Proposed Solution
+
+The proposed system follows three major algorithmic stages:
+
+### Stage 1 — Priority Queue
+
+Vehicles are placed into a priority queue according to:
+
+1. Higher urgency
+2. Earlier departure time
+3. Shorter charging duration
+
+### Stage 2 — Greedy Slot Selection
+
+For each selected vehicle, the system checks the available charging slots and chooses the earliest feasible start time while ensuring:
+
+**Charging End Time ≤ Departure Deadline**
+
+### Stage 3 — Job Sequencing / Deadline Checking
+
+If a vehicle can be completed before its deadline, it is scheduled.
+
+If no feasible slot exists, the vehicle is marked:
+
+**Not Scheduled**
+
+This makes the scheduling decision transparent and algorithm-driven.
+
+---
+
+# 3. PROBLEM STATEMENT, OBJECTIVES & SCOPE
+
+## 3.1 Problem Statement
+
+Electric Vehicle charging stations have a limited number of charging slots. Multiple EVs may request charging simultaneously, each with different urgency levels, arrival times, departure deadlines and charging durations.
+
+The problem is to develop an algorithm-based system that assigns available charging slots to vehicles while considering their priority and deadlines and provides a clear explanation of the scheduling decisions.
+
+---
+
+## 3.2 Objectives
+
+The major objectives of the project are:
+
+1. To develop an automated EV charging slot scheduling system.
+2. To apply a **Priority Queue** for prioritizing charging requests.
+3. To apply a **Greedy Algorithm** for selecting feasible charging slots.
+4. To use deadline-based **Job Sequencing** principles.
+5. To minimize scheduling conflicts.
+6. To ensure that scheduled charging is completed before the vehicle's departure deadline.
+7. To utilize available charging slots efficiently.
+8. To display algorithm execution and scheduling decisions.
+9. To provide a simple and user-friendly interface.
+10. To demonstrate practical applications of Design and Analysis of Algorithms.
+
+---
+
+## 3.3 Project Scope
+
+The project focuses on scheduling electric vehicles across a limited number of charging slots.
+
+The system supports:
+
+* Vehicle registration
+* Charging request creation
+* Priority calculation
+* Charging slot allocation
+* Deadline verification
+* Schedule generation
+* Execution logs
+* Schedule visualization
+* Database storage
+* Basic performance analysis
+
+The system can be extended in the future to support real-time charging stations, mobile applications, IoT devices and dynamic electricity pricing.
+
+---
+
+## 3.4 Target Users
+
+The intended users include:
+
+* EV charging station operators
+* EV owners
+* Charging station administrators
+* Campus charging facilities
+* Commercial charging station managers
+* Researchers and students studying scheduling algorithms
+
+---
+
+# 4. FEATURES & FUNCTIONAL REQUIREMENTS
+
+## 4.1 Main Features
+
+The major features of the system are:
+
+### 1. Vehicle Registration
+
+Users can enter:
+
+* Vehicle ID
+* Urgency level
+* Arrival time
+* Departure time
+* Charging duration
+
+### 2. Priority Queue
+
+Charging requests are prioritized based on predefined priority rules.
+
+### 3. Greedy Slot Assignment
+
+The system checks available charging slots and selects an earliest feasible slot.
+
+### 4. Deadline Verification
+
+The system verifies whether charging can finish before the vehicle's departure time.
+
+### 5. Final Schedule
+
+The generated schedule displays:
+
+* Vehicle ID
+* Charging slot
+* Start time
+* End time
+* Departure deadline
+* Urgency
+* Status
+
+### 6. Algorithm Execution Log
+
+The system displays the decisions made by the algorithm, including:
+
+* Selected vehicle
+* Priority value
+* Slot checks
+* Greedy decision
+* Deadline result
+
+### 7. Clear Data
+
+Users can clear the currently entered vehicle requests.
+
+---
+
+## 4.2 User Functionalities
+
+Users can:
+
+1. Add a vehicle.
+2. Specify charging requirements.
+3. View registered vehicles.
+4. Generate a charging schedule.
+5. View assigned charging slots.
+6. View scheduling status.
+7. View algorithm execution details.
+8. Clear the current requests.
+
+---
+
+## 4.3 CRUD Operations
+
+The application can support standard CRUD operations.
+
+| Operation | Description                             |
+| --------- | --------------------------------------- |
+| Create    | Add a new EV charging request           |
+| Read      | View vehicle and scheduling information |
+| Update    | Modify vehicle charging information     |
+| Delete    | Remove a vehicle/request                |
+
+The current prototype primarily implements **Create, Read and Delete** operations, while Update functionality can be added as an enhancement.
+
+---
+
+## 4.4 Authentication & Validation
+
+For a production version, administrator authentication can be implemented.
+
+Validation includes:
+
+* Vehicle ID must not be empty.
+* Urgency must be within an allowed range.
+* Arrival time must be valid.
+* Departure time must be later than arrival time.
+* Charging duration must be positive.
+* Duplicate vehicle IDs should be prevented.
+* Charging must be completed before the departure deadline.
+
+---
+
+## 4.5 System Requirements
+
+### Hardware Requirements
+
+* Processor: Intel Core i3 or equivalent
+* RAM: Minimum 4 GB
+* Storage: Minimum 500 MB available space
+* Network: Required for development/deployment if using a remote database
+
+### Software Requirements
+
+* Windows/Linux/macOS
+* Python 3.x
+* Flask
+* PostgreSQL
+* Visual Studio Code or another Python IDE
+* Modern web browser
+
+---
+
+# 5. ALGORITHMS & METHODOLOGY
+
+## 5.1 System Workflow
+
+The system follows the workflow:
+
+```text
+User
+  ↓
+Enter Vehicle Details
+  ↓
+Validate Input
+  ↓
+Add Vehicle to Priority Queue
+  ↓
+Select Highest-Priority Vehicle
+  ↓
+Check Available Charging Slots
+  ↓
+Greedy Selection
+  ↓
+Check Departure Deadline
+  ↓
+Assign Slot / Reject Request
+  ↓
+Update Slot Availability
+  ↓
+Generate Final Schedule
+  ↓
+Display Execution Log
+```
+
+---
+
+# 5.2 Algorithms Used
+
+## Algorithm 1 — Priority Queue
+
+The Priority Queue determines the order in which vehicles are processed.
+
+Priority is based on:
+
+1. Higher urgency
+2. Earlier departure
+3. Shorter charging duration
+
+A priority value is calculated for each vehicle.
+
+The vehicle with the highest priority is removed from the queue first.
+
+### Example
+
+Suppose:
+
+| Vehicle | Urgency | Departure |
+| ------- | ------: | --------- |
+| EV001   |       5 | 10:00     |
+| EV002   |       3 | 12:00     |
+| EV003   |       5 | 09:30     |
+
+EV003 is processed before EV001 because both have urgency 5, but EV003 has the earlier departure deadline.
+
+---
+
+# 5.3 Algorithm 2 — Greedy Algorithm
+
+The Greedy Algorithm attempts to make the best locally feasible decision for each vehicle.
+
+For every selected vehicle:
+
+1. Check every charging slot.
+2. Calculate the earliest possible start time.
+3. Calculate the charging end time.
+4. Verify that the end time is before the deadline.
+5. Among feasible slots, select the one with the earliest start time.
+
+The condition is:
+
+```text
+End Time = Start Time + Charging Duration
+
+End Time ≤ Departure Time
+```
+
+This approach makes a locally feasible scheduling decision for every vehicle processed.
+
+---
+
+# 5.4 Algorithm 3 — Job Sequencing / Deadline Checking
+
+The project applies job sequencing principles by treating each charging request as a job with:
+
+* Processing time = charging duration
+* Deadline = vehicle departure time
+* Priority = urgency/deadline-based priority
+
+A vehicle is scheduled only when a feasible slot can complete the charging before its deadline.
+
+If no feasible slot is found:
+
+```text
+Status = Not Scheduled
+```
+
+---
+
+# 5.5 Pseudocode
+
+```text
+START
+
+Input vehicle requests
+
+FOR each vehicle
+    Calculate priority
+    Insert vehicle into Priority Queue
+END FOR
+
+Initialize charging slots
+
+WHILE Priority Queue is not empty
+
+    Remove highest-priority vehicle
+
+    best_slot = NONE
+
+    FOR each charging slot
+
+        start = maximum(arrival time, slot available time)
+
+        end = start + charging duration
+
+        IF end <= departure deadline
+
+            IF start is earlier than current best start
+                Select this slot
+            END IF
+
+        END IF
+
+    END FOR
+
+    IF a feasible slot exists
+
+        Assign vehicle to selected slot
+        Update slot availability
+        Mark vehicle as Scheduled
+
+    ELSE
+
+        Mark vehicle as Not Scheduled
+
+    END IF
+
+END WHILE
+
+Display final schedule
+Display algorithm execution log
+
+END
+```
+
+---
+
+# 5.6 Development Methodology
+
+The project follows an incremental development approach.
+
+### Phase 1 — Requirement Analysis
+
+Identify:
+
+* Vehicle information
+* Charging requirements
+* Number of charging slots
+* Priority criteria
+* Deadline requirements
+
+### Phase 2 — Algorithm Design
+
+Design the:
+
+* Priority Queue
+* Greedy scheduling logic
+* Deadline checking mechanism
+
+### Phase 3 — Core Implementation
+
+Implement the algorithms using Python.
+
+### Phase 4 — Web Development
+
+Develop the Flask backend and HTML/CSS interface.
+
+### Phase 5 — Database Integration
+
+Use PostgreSQL for persistent storage of vehicle requests and schedules.
+
+### Phase 6 — Testing
+
+Test scheduling, deadline handling, invalid inputs and multiple charging requests.
+
+### Phase 7 — Performance Analysis
+
+Analyze time and space complexity and observe execution behavior for different numbers of vehicles and slots.
+
+---
+
+# 5.7 Data Flow
+
+```text
+Vehicle Input
+     ↓
+Input Validation
+     ↓
+Vehicle Object
+     ↓
+Priority Queue
+     ↓
+Priority Selection
+     ↓
+Charging Slot Evaluation
+     ↓
+Greedy Decision
+     ↓
+Deadline Check
+     ↓
+Schedule
+     ↓
+Database / UI
+     ↓
+User
+```
+
+---
+
+# 6. TECHNOLOGIES & IMPLEMENTATION
+
+## 6.1 Frontend Technologies
+
+### HTML
+
+HTML is used to structure the web page and provide:
+
+* Forms
+* Tables
+* Buttons
+* Schedule information
+* Execution logs
+
+### CSS
+
+CSS is used to improve:
+
+* Layout
+* Colors
+* Typography
+* Tables
+* Forms
+* Responsive design
+
+---
+
+## 6.2 Backend Technologies
+
+### Python
+
+Python is used to implement the core scheduling algorithms.
+
+Main Python concepts include:
+
+* Classes
+* Dataclasses
+* Lists
+* Heap/Priority Queue
+* Functions
+* Dictionaries
+* Conditional statements
+* Loops
+
+### Flask
+
+Flask provides the web application framework.
+
+It handles:
+
+* HTTP requests
+* Form submission
+* Routing
+* HTML rendering
+* Communication with the scheduling module
+
+---
+
+## 6.3 Database
+
+### PostgreSQL
+
+PostgreSQL is proposed as the persistent database.
+
+A possible vehicle table is:
+
+```text
+vehicles
+--------------------------------
+vehicle_id
+urgency
+arrival_time
+departure_time
+charging_duration
+created_at
+```
+
+A schedule table can contain:
+
+```text
+charging_schedule
+--------------------------------
+schedule_id
+vehicle_id
+slot_number
+start_time
+end_time
+status
+created_at
+```
+
+---
+
+# 6.4 Tools & APIs
+
+| Tool       | Purpose                  |
+| ---------- | ------------------------ |
+| Python     | Algorithm implementation |
+| Flask      | Backend web framework    |
+| HTML       | Web page structure       |
+| CSS        | User interface           |
+| PostgreSQL | Data storage             |
+| VS Code    | Development environment  |
+| Browser    | Application testing      |
+| Git        | Version control          |
+
+---
+
+# 6.5 Implementation Details
+
+The main data structure used for scheduling is Python's heap-based Priority Queue.
+
+A vehicle is represented using a data class:
+
+```python
+@dataclass
+class Vehicle:
+    vehicle_id: str
+    urgency: int
+    arrival: int
+    departure: int
+    duration: int
+```
+
+Time values are converted into minutes to simplify scheduling calculations.
+
+For example:
+
+```text
+08:00 → 480 minutes
+09:30 → 570 minutes
+```
+
+After scheduling, the minutes are converted back into `HH:MM` format for display.
+
+The system maintains the availability of each charging slot using:
+
+```python
+slot_available = [0] * number_of_slots
+```
+
+For three charging slots:
+
+```text
+Slot 1
+Slot 2
+Slot 3
+```
+
+each slot maintains its next available charging time.
+
+---
+
+# 7. RESULTS, TESTING & PERFORMANCE
+
+## 7.1 Project Results
+
+The implemented scheduling algorithm successfully processed the sample EV requests.
+
+The test data contained six vehicles and three charging slots.
+
+The resulting schedule was:
+
+| Vehicle | Slot | Start | End   | Deadline | Status    |
+| ------- | ---: | ----- | ----- | -------- | --------- |
+| EV003   |    1 | 08:30 | 09:30 | 09:30    | Scheduled |
+| EV001   |    2 | 08:00 | 10:00 | 10:00    | Scheduled |
+| EV005   |    3 | 09:15 | 10:15 | 11:30    | Scheduled |
+| EV002   |    1 | 09:30 | 10:30 | 12:00    | Scheduled |
+| EV004   |    2 | 10:00 | 12:00 | 13:00    | Scheduled |
+| EV006   |    3 | 10:15 | 12:15 | 14:00    | Scheduled |
+
+All six sample vehicles were successfully assigned charging slots.
+
+---
+
+# 7.2 Algorithm Execution Result
+
+The algorithm processed the vehicles according to their calculated priorities.
+
+The execution order was:
+
+```text
+EV003
+EV001
+EV005
+EV002
+EV004
+EV006
+```
+
+For every vehicle, the system checked all available slots before making the scheduling decision.
+
+Example:
+
+```text
+Step: EV005 selected
+
+Checking Slot 1: 09:30 - 10:30
+Checking Slot 2: 10:00 - 11:00
+Checking Slot 3: 09:15 - 10:15
+
+Greedy Decision:
+EV005 assigned to Slot 3
+```
+
+This execution log demonstrates that the system is not simply producing a final answer; it also exposes the algorithmic decision-making process.
+
+---
+
+# 7.3 Test Cases
+
+## Test Case 1 — Normal Scheduling
+
+**Input:** Six vehicles, three charging slots.
+
+**Expected Result:** Vehicles are assigned to feasible slots.
+
+**Actual Result:** All six vehicles were scheduled successfully.
+
+**Status:** Pass
+
+---
+
+## Test Case 2 — High Priority Vehicle
+
+**Input:** A vehicle with high urgency and an early departure deadline.
+
+**Expected Result:** Vehicle should be processed earlier by the Priority Queue.
+
+**Actual Result:** High-priority vehicle is selected first according to the defined priority rules.
+
+**Status:** Pass
+
+---
+
+## Test Case 3 — Deadline Constraint
+
+**Input:** Vehicle whose charging cannot finish before departure.
+
+**Expected Result:** Vehicle should not be scheduled.
+
+**Actual Result:** Vehicle is marked `Not Scheduled`.
+
+**Status:** Pass
+
+---
+
+## Test Case 4 — Multiple Available Slots
+
+**Input:** Vehicle can be charged in multiple slots.
+
+**Expected Result:** Greedy algorithm chooses the feasible slot with the earliest starting time.
+
+**Actual Result:** Earliest feasible slot is selected.
+
+**Status:** Pass
+
+---
+
+## Test Case 5 — Different Charging Durations
+
+**Input:** Vehicles requiring different charging durations.
+
+**Expected Result:** Charging end times should be calculated correctly.
+
+**Actual Result:** End times are calculated using arrival/slot availability plus duration.
+
+**Status:** Pass
+
+---
+
+# 7.4 Testing Methods
+
+The following testing methods are used:
+
+### Unit Testing
+
+Individual functions such as:
+
+* `time_to_minutes()`
+* `minutes_to_time()`
+* `calculate_priority()`
+* `schedule_vehicles()`
+
+can be tested independently.
+
+### Functional Testing
+
+The complete scheduling workflow is tested using different vehicle requests.
+
+### Boundary Testing
+
+The system is tested with:
+
+* Very early deadlines
+* Long charging durations
+* Minimum urgency
+* Maximum urgency
+* No available slot
+
+### Integration Testing
+
+The Flask interface is tested with the scheduling algorithm to verify that user inputs correctly reach the backend.
+
+---
+
+# 7.5 Performance Analysis
+
+Let:
+
+* `n` = number of vehicles
+* `k` = number of charging slots
+
+### Priority Queue
+
+Insertion/removal from a heap takes:
+
+```text
+O(log n)
+```
+
+For `n` vehicles:
+
+```text
+O(n log n)
+```
+
+### Greedy Slot Selection
+
+Each vehicle checks all `k` slots:
+
+```text
+O(k)
+```
+
+For `n` vehicles:
+
+```text
+O(nk)
+```
+
+### Overall Complexity
+
+The approximate overall time complexity is:
+
+```text
+O(n log n + nk)
+```
+
+### Space Complexity
+
+The main data structures require approximately:
+
+```text
+O(n + k)
+```
+
+space.
+
+The algorithm therefore remains practical for a moderate number of vehicles and charging slots.
+
+---
+
+# 7.6 Screenshots / Output
+
+The final report should include screenshots of:
+
+### Screenshot 1 — Project Folder
+
+Show:
+
+```text
+EV-Charging-Scheduler/
+├── app.py
+├── scheduler.py
+└── templates/
+    └── index.html
+```
+
+### Screenshot 2 — Vehicle Input Form
+
+Show the web page where users enter:
+
+* Vehicle ID
+* Urgency
+* Arrival
+* Departure
+* Charging Duration
+
+### Screenshot 3 — Vehicle Requests
+
+Show the list of entered vehicles.
+
+### Screenshot 4 — Final Schedule
+
+Show:
+
+* Vehicle ID
+* Slot
+* Start
+* End
+* Deadline
+* Status
+
+### Screenshot 5 — Algorithm Execution
+
+Show the Priority Queue selection and Greedy slot decisions.
+
+### Screenshot 6 — Terminal Output
+
+Include the successful output generated by:
+
+```text
+python scheduler.py
+```
+
+---
+
+# 8. CONCLUSION, FUTURE SCOPE & REFERENCES
+
+## 8.1 Conclusion
+
+The **EV Charging Slot Scheduler** demonstrates the practical application of Design and Analysis of Algorithms to a real-world scheduling problem.
+
+The system combines a **Priority Queue**, **Greedy Algorithm** and **Job Sequencing/deadline checking** to process charging requests and assign feasible charging slots.
+
+The Priority Queue determines the processing order of vehicles based on urgency, departure deadline and charging duration. The Greedy approach then selects an earliest feasible charging slot while ensuring that charging is completed before the vehicle's departure deadline.
+
+The prototype successfully generated a schedule for multiple vehicles and charging slots and displayed the decisions made during execution.
+
+The project demonstrates how algorithmic concepts can be transformed into a practical software application using Python and Flask.
+
+---
+
+# 8.2 Future Scope
+
+The system can be enhanced in several ways:
+
+### 1. PostgreSQL Integration
+
+Store vehicle requests, schedules and historical charging data permanently.
+
+### 2. User Authentication
+
+Add administrator and EV-user accounts.
+
+### 3. Real-Time Charging Status
+
+Integrate charging station data to display:
+
+* Available slots
+* Currently charging vehicles
+* Completed charging
+* Station status
+
+### 4. Gantt Chart
+
+Add a visual timeline showing charging periods for every slot.
+
+### 5. Mobile Application
+
+Develop an Android/iOS application for EV users.
+
+### 6. Dynamic Pricing
+
+Consider electricity prices at different times while scheduling.
+
+### 7. Reservation System
+
+Allow users to reserve charging slots in advance.
+
+### 8. Notifications
+
+Send notifications when:
+
+* A slot is assigned
+* Charging starts
+* Charging finishes
+* A request cannot be scheduled
+
+### 9. IoT Integration
+
+Connect the scheduler to smart charging stations and sensors.
+
+### 10. Advanced Scheduling Algorithms
+
+Future versions can compare the current approach with:
+
+* Shortest Job First
+* Earliest Deadline First
+* Round Robin
+* Dynamic Programming
+* Multi-objective optimization
+
+---
+
+# 8.3 References / Documentation
+
+1. Python Documentation — Python Programming Language
+   https://docs.python.org/
+
+2. Flask Documentation — Flask Web Framework
+   https://flask.palletsprojects.com/
+
+3. PostgreSQL Documentation
+   https://www.postgresql.org/docs/
+
+4. Python `heapq` Documentation — Heap Queue Algorithm
+   https://docs.python.org/3/library/heapq.html
+
+5. Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, **Introduction to Algorithms**, MIT Press.
+
+6. Robert Lafore, **Data Structures & Algorithms in Java**, Sams Publishing.
+
+7. Design and Analysis of Algorithms — Course materials and lecture notes.
+
+---
+
+# PROJECT SUMMARY
+
+| Component        | Implementation                                    |
+| ---------------- | ------------------------------------------------- |
+| Project          | EV Charging Slot Scheduler                        |
+| Main Problem     | EV charging slot allocation                       |
+| Algorithm 1      | Priority Queue                                    |
+| Algorithm 2      | Greedy Algorithm                                  |
+| Algorithm 3      | Job Sequencing / Deadline Checking                |
+| Frontend         | HTML, CSS                                         |
+| Backend          | Python, Flask                                     |
+| Database         | PostgreSQL                                        |
+| Input            | Vehicle ID, urgency, arrival, departure, duration |
+| Output           | Charging slot and schedule                        |
+| Time Complexity  | O(n log n + nk)                                   |
+| Space Complexity | O(n + k)                                          |
+| Sample Vehicles  | 6                                                 |
+| Charging Slots   | 3                                                 |
+| Sample Result    | 6 vehicles scheduled successfully                 |
+
+---
+
+# FINAL PROJECT OUTCOME
+
+The completed system provides an algorithm-centric solution for EV charging slot scheduling. It accepts charging requests, prioritizes vehicles, evaluates charging slots, checks deadlines, generates a feasible schedule and displays the algorithm's execution decisions.
+
+The project demonstrates the practical use of **Priority Queue, Greedy Scheduling and Job Sequencing concepts** in solving a real-world resource allocation problem.
